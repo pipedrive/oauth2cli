@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/int128/oauth2cli/oauth2params"
+	"github.com/pipedrive/oauth2cli/oauth2params"
 	"golang.org/x/oauth2"
 )
 
