@@ -146,18 +146,14 @@ func (c *Config) validateAndSetDefaults() error {
 // 	6. Return the code.
 //
 
-func GetToken(ctx context.Context, c Config) (*oauth2.Token, error) {
+func GetToken(ctx context.Context, c Config) (string, error) {
 	if err := c.validateAndSetDefaults(); err != nil {
-		return nil, fmt.Errorf("invalid config: %w", err)
+		return "", fmt.Errorf("invalid config: %w", err)
 	}
 	code, err := receiveCodeViaLocalServer(ctx, &c)
 	if err != nil {
-		return nil, fmt.Errorf("authorization error: %w", err)
+		return "", fmt.Errorf("authorization error: %w", err)
 	}
 	c.Logf("oauth2cli: exchanging the code and token")
-	token, err := c.OAuth2Config.Exchange(ctx, code, c.TokenRequestOptions...)
-	if err != nil {
-		return nil, fmt.Errorf("could not exchange the code and token: %w", err)
-	}
-	return token, nil
+	return code, nil
 }
