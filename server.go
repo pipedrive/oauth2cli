@@ -137,10 +137,7 @@ func (h *localServerHandler) handleIndex(w http.ResponseWriter, r *http.Request)
 }
 
 func (h *localServerHandler) handleCodeResponse(w http.ResponseWriter, r *http.Request) *authorizationResponse {
-	err := r.ParseForm()
-	if err != nil {
-		http.Error(w, "failed to parse form", http.StatusBadRequest)
-	}
+	_ = r.ParseForm()
 	idToken, state := r.Form.Get("id_token"), r.Form.Get("state")
 
 	if state != h.config.State {
