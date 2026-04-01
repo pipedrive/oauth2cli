@@ -3,5 +3,5 @@
   "description": "Library for forked kubelogin utility",
   "owner": "Developer Productivity",
   "type": "library",
-  "status": "released"
+  "status": "archived"
 }
